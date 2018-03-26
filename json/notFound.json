@@ -1,0 +1,14 @@
+{
+"title": "Error",
+"type": "object",
+"properties": {
+"code": {
+"description": "404",
+"type": "integer"
+},
+"description": {
+"description": "Not Found",
+"type": "string"
+}
+}
+}

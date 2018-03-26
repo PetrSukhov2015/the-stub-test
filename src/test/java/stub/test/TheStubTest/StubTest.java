@@ -15,41 +15,27 @@ import org.testng.annotations.Test;
 
 public class StubTest {
 	
-	JSONObject jsonIdObject;
+	JSONObject jsonId;
 	Stub s;
 	
 	@BeforeTest
 	public void b() throws ParseException, FileNotFoundException, IOException {
 		//create stub
 		 s = new Stub();
-		
-		//create taskId
-		//String filePath = "D:\\EclipseMars2\\TheStubTest\\json\\taskId.json";
-		//JSONParser jsonParser = new JSONParser();
-		//jsonIdObject = (JSONObject) jsonParser.parse(filePath);
-		
-		JSONParser parser = new JSONParser();
 
-            Object object = parser
-                    .parse(new FileReader("D:\\EclipseMars2\\TheStubTest\\json\\taskId.json"));
-            
-            //convert Object to JSONObject
-            jsonIdObject = (JSONObject)object;
-        
+		//parse file to json object
+		JSONParser parser = new JSONParser();         
+      
+        jsonId = (JSONObject)parser
+            .parse(new FileReader("D:\\EclipseMars2\\TheStubTest\\json\\taskId.json"));
+       
 	}
 	
 
 	@Test
-	public void tValid() throws IOException{
-		//Assert.assertTrue(s.getTask(jsonIdObject), )
-		System.out.println(s.getTask(jsonIdObject));
+	public void tValid() throws IOException, ParseException{
+		String resul = s.getTask(jsonId);		
 	}
-	/*
-	public void tUnValid() throws IOException{
-		System.out.println(s.getTask("123"));
-	}
-	public void tBadParams() throws IOException{
-		
-		System.out.println(s.getTask("123"));
-	}*/
+
+	
 }

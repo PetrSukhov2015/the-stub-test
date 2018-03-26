@@ -1,34 +1,63 @@
 package stub.test.TheStubTest;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Stub {
+	
+	public String getTask(JSONObject jsonId) throws FileNotFoundException, IOException, ParseException  {
+	
+		// error
+		JSONParser parser = new JSONParser();
+		JSONObject jsonError = (JSONObject) parser
+				.parse(new FileReader("D:\\EclipseMars2\\TheStubTest\\json\\error.json"));
 
-	public String getTask(JSONObject jsonId)  {
+		// not found answer json
+		parser = new JSONParser();
+		JSONObject jsonNotFound = (JSONObject) parser
+				.parse(new FileReader("D:\\EclipseMars2\\TheStubTest\\json\\notFound.json"));
 
-		//create simple json
+		// task json
+		parser = new JSONParser();
+		JSONObject jsonTask = (JSONObject) parser
+				.parse(new FileReader("D:\\EclipseMars2\\TheStubTest\\json\\task.json"));
+
+		// create response json
 		JSONObject jsonResp = new JSONObject();
-		//int theId = Integer.parseInt((String) jsonId.get("Id") );
 		
-		//case valid id
-		if (theId < 1000){ //valid id
-			jsonResp.put("id", 76699046);
-			jsonResp.put("name", "Task 1");
-			jsonResp.put("mark", 3.5);
-			
-		} else if (1000<theId){ //error id
-			jsonResp.put("code", 404);
-			jsonResp.put("description", "Not Found");
-			
-		} else if (1000 == theId){//no params
-			jsonResp.put("code", 400);
-			jsonResp.put("description", "Bad Request");
-			
+		
+		
+		// get id from children nodes
+		// properties/id/description
+		String keyId = (((HashMap) ((HashMap) jsonId.get("properties")).get("id")).get("description")).toString();
+		
+		
+		//out of keys => error
+		if(null == keyId){
+			jsonResp=jsonError;
+			// not found
+		}else if(76699046 != Integer.parseInt(keyId) ){
+			jsonResp=jsonNotFound;
+			//fast found
+		}else{
+			jsonResp=jsonTask;
 		}
-		return "HTTP/1.1 200 OK\r\n"+jsonResp.toString();
+		return "HTTP/1.1 200 OK\r\n" +
+        "Server: TheServer/2018-26-03\r\n" +
+        "Content-Type: text/html\r\n" + //mime text not json
+        "Content-Length: " + ((CharSequence) jsonTask).length() + "\r\n" +
+        "Connection: close\r\n\r\n" +
+        jsonTask.toString();
 		
+		
+
+	
 	}
 	
 

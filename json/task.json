@@ -1,0 +1,24 @@
+{
+"title": "Task",
+"type": "object",
+"properties": {
+"id": {
+"description": "76699046",
+"type": "integer"
+},
+"name": {
+"description": "Task 1"
+"type": "string"
+},
+"mark": {
+"description": "3.5"
+"type": "number",
+"exclusiveMinimum": 0
+}
+},
+"required": [
+"id",
+"name",
+"mark"
+]
+}

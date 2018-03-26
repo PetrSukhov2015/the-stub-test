@@ -1,0 +1,14 @@
+{
+"title": "Error",
+"type": "object",
+"properties": {
+"code": {
+"description": "400",
+"type": "integer"
+},
+"description": {
+"description": "Bad Request",
+"type": "string"
+}
+}
+}
