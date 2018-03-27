@@ -3,16 +3,15 @@
 "type": "object",
 "properties": {
 "id": {
-"description": "76699046",
-"type": "integer"
+"description": "The unique identifierfor a object",
+"type": "76699046"
 },
 "name": {
 "description": "Task 1"
 "type": "string"
 },
 "mark": {
-"description": "3.5"
-"type": "number",
+"type": "3.5",
 "exclusiveMinimum": 0
 }
 },

@@ -35,15 +35,15 @@ public class Stub {
 		
 		// get id from children nodes
 		// properties/id/description
-		String keyId = (((HashMap) ((HashMap) jsonId.get("properties")).get("id")).get("description")).toString();
-		
+		String keyId = (((HashMap) ((HashMap) jsonId.get("properties")).get("id")).get("type")).toString();
 		
 		//out of keys => error
 		if(null == keyId){
 			jsonResp=jsonError;
 			// not found
-		}else if(76699046 != Integer.parseInt(keyId) ){
+		}else if( false == "76699046".equals(keyId) ){
 			jsonResp=jsonNotFound;
+			System.out.println(jsonResp.toString());
 			//fast found
 		}else{
 			jsonResp=jsonTask;
@@ -51,9 +51,9 @@ public class Stub {
 		return "HTTP/1.1 200 OK\r\n" +
         "Server: TheServer/2018-26-03\r\n" +
         "Content-Type: text/html\r\n" + //mime text not json
-        "Content-Length: " + ((CharSequence) jsonTask).length() + "\r\n" +
+        "Content-Length: " + jsonResp.toString().length() + "\r\n" +
         "Connection: close\r\n\r\n" +
-        jsonTask.toString();
+        jsonResp.toString();
 		
 		
 

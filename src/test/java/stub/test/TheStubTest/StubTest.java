@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.JSONPointer;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -34,7 +35,19 @@ public class StubTest {
 
 	@Test
 	public void tValid() throws IOException, ParseException{
-		String resul = s.getTask(jsonId);		
+		//result
+		String res = s.getTask(jsonId);	
+		
+		//check result
+		Assert.assertTrue(res.contains("HTTP/1.1 200 OK")
+				&& res.contains("\"id\":{\"description\":\"The unique identifierfor a object\",\"type\":\"76699046\"}")
+				&& res.contains("\"name\":{\"description\":\"Task 1\"")
+				&& res.contains("\"mark\":{\"type\":\"3.5\""));
+		
+		//{"id": 76699046, "name": "Task 1","mark": 3.5
+		//{"title":"Task","type":"object","properties":{"name":{"description":"Task 1","type":"string"},"id":{"description":"The unique identifierfor a object","type":"76699046"},"mark":{"type":"3.5","exclusiveMinimum":0}},"required":["id","name","mark"]}
+
+		//System.out.println("");
 	}
 
 	
