@@ -16,17 +16,17 @@ public class Stub {
 		// error
 		JSONParser parser = new JSONParser();
 		JSONObject jsonError = (JSONObject) parser
-				.parse(new FileReader("D:\\EclipseMars2\\TheStubTest\\json\\error.json"));
+				.parse(new FileReader("json\\error.json"));
 
 		// not found answer json
 		parser = new JSONParser();
 		JSONObject jsonNotFound = (JSONObject) parser
-				.parse(new FileReader("D:\\EclipseMars2\\TheStubTest\\json\\notFound.json"));
+				.parse(new FileReader("json\\notFound.json"));
 
 		// task json
 		parser = new JSONParser();
 		JSONObject jsonTask = (JSONObject) parser
-				.parse(new FileReader("D:\\EclipseMars2\\TheStubTest\\json\\task.json"));
+				.parse(new FileReader("json\\task.json"));
 
 		// create response json
 		JSONObject jsonResp = new JSONObject();
@@ -35,8 +35,12 @@ public class Stub {
 		
 		// get id from children nodes
 		// properties/id/description
-		String keyId = (((HashMap) ((HashMap) jsonId.get("properties")).get("id")).get("type")).toString();
-		
+		String keyId;
+		try{
+			keyId = (((HashMap) ((HashMap) jsonId.get("properties")).get("id")).get("type")).toString();
+		}catch(NullPointerException e){
+			keyId = null;
+		}
 		//out of keys => error
 		if(null == keyId){
 			jsonResp=jsonError;

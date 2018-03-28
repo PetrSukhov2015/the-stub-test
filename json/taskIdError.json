@@ -1,0 +1,13 @@
+{
+"title": "Id",
+"type": "object",
+"properties": {
+"id": {
+"description": "The unique identifierfor a object",
+"type": "86699046"
+}
+},
+"required": [
+"id"
+]
+}
