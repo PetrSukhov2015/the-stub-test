@@ -18,6 +18,14 @@ pom.xml - описание maven библиотек
 testng.xml - описание 3-х тестов
 
 Как запускать:
+1)установить jdk18, maven на ОС с которой будут запускатсья тесты, прописать в глобальные переменные jdk, jre и maven
+	 1.1)https://www.youtube.com/watch?v=yrRmLOcB9fg
+	 1.2)https://www.youtube.com/watch?v=oTRmukUvB50
+2)проверить, что maven установился mvn -v
+3)в консоли перейти в директорию, где находятся pom.xml и testng.xml файлы проекта
+	https://www.youtube.com/watch?v=wTUqYxR5XF8
+4)выполнить mvn clean test
+5)результаты теста отобразятся в консоли и в директории test-output
 
 
 
